@@ -30,13 +30,13 @@ jobs:
         with:
           path: ./dist # Vite 빌드 결과물이 저장되는 폴더
           
-deploy:
-  environment:
-    name: github-pages
-    url: ${{ steps.deployment.outputs.page_url }}
-  runs-on: ubuntu-latest
-  needs: build
-  steps:
-  - name: Deploy to GitHub Pages
-    id: deployment
-    uses: actions/deploy-pages@v4
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
