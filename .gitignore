@@ -24,19 +24,9 @@ dist-ssr
 *.sw?
 Thumbs.db
 
-# 1. 의존성 패키지 (가장 중요 - 수만 개 파일, 용량 수백 MB)
-node_modules/
-
-# 2. 빌드 산출물 (GitHub Actions가 자동으로 빌드하므로 제외)
-dist/
-dist-ssr/
-
 # 3. 환경 변수 및 비밀 키 (API Key 유출 방지)
 .env
 .env.local
 .env.*.local
 
-# 5. OS 및 에디터 임시 파일
-.DS_Store
-Thumbs.db
 
