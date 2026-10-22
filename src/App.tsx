@@ -17,12 +17,15 @@ import {
   AlertCircle,
   X,
   Code2,
-  ArrowRight
+  ArrowRight,
+  PlayCircle,
+  Layers
 } from 'lucide-react';
 
 export default function App() {
   const [filter, setFilter] = useState<'All' | 'Team' | 'Personal'>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [modalTab, setModalTab] = useState<'video' | 'diagram'>('video');
   
   // Theme state: default to dark mode for tech portfolio, sync with localStorage
   const [isDark, setIsDark] = useState<boolean>(() => {
@@ -295,7 +298,10 @@ export default function App() {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              onClick={() => setSelectedProject(project)}
+              onClick={() => {
+                setSelectedProject(project);
+                setModalTab(project.videoUrl ? 'video' : 'diagram');
+              }}
               className="group bg-white dark:bg-slate-900/90 hover:bg-slate-50/50 dark:hover:bg-slate-800/90 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 dark:hover:border-indigo-500/50 rounded-2xl overflow-hidden cursor-pointer flex flex-col justify-between transition-all duration-200 shadow-sm hover:shadow-xl hover:-translate-y-1"
             >
               <div>
@@ -305,27 +311,35 @@ export default function App() {
                 </div>
 
                 <div className="p-6">
-                  {/* Metadata Row: Category Pill & Period */}
+                  {/* Metadata Row: Category Pill, Video Badge & Period */}
                   <div className="flex items-center justify-between mb-3">
-                    <span
-                      className={`inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full font-semibold border ${
-                        project.category === 'Team'
-                          ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-900/50'
-                          : 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50'
-                      }`}
-                    >
-                      {project.category === 'Team' ? (
-                        <>
-                          <Users className="w-3 h-3" />
-                          <span>Team</span>
-                        </>
-                      ) : (
-                        <>
-                          <Sparkles className="w-3 h-3" />
-                          <span>Personal</span>
-                        </>
+                    <div className="flex items-center gap-1.5">
+                      <span
+                        className={`inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full font-semibold border ${
+                          project.category === 'Team'
+                            ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-900/50'
+                            : 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50'
+                        }`}
+                      >
+                        {project.category === 'Team' ? (
+                          <>
+                            <Users className="w-3 h-3" />
+                            <span>Team</span>
+                          </>
+                        ) : (
+                          <>
+                            <Sparkles className="w-3 h-3" />
+                            <span>Personal</span>
+                          </>
+                        )}
+                      </span>
+                      {project.videoUrl && (
+                        <span className="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800/60">
+                          <PlayCircle className="w-3 h-3" />
+                          <span>시연 영상</span>
+                        </span>
                       )}
-                    </span>
+                    </div>
                     <span className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1 font-mono">
                       <Calendar className="w-3 h-3" />
                       {project.period}
@@ -357,7 +371,7 @@ export default function App() {
               {/* Card Footer Link */}
               <div className="px-6 py-3.5 bg-slate-50 dark:bg-slate-900/40 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs text-indigo-600 dark:text-indigo-400 font-semibold group-hover:text-indigo-500">
                 <span className="flex items-center gap-1">
-                  <span>문제 해결 과정 보기</span>
+                  <span>{project.videoUrl ? '시연 영상 & 문제 해결 보기' : '문제 해결 과정 보기'}</span>
                   <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </span>
                 {project.githubUrl && (
@@ -402,6 +416,12 @@ export default function App() {
               >
                 {selectedProject.category} Project
               </span>
+              {selectedProject.videoUrl && (
+                <span className="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800/60">
+                  <PlayCircle className="w-3 h-3" />
+                  <span>시연 영상</span>
+                </span>
+              )}
               <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
                 {selectedProject.teamSize}
               </span>
@@ -414,9 +434,52 @@ export default function App() {
               기간: {selectedProject.period} | 담당 역할: <span className="text-slate-700 dark:text-slate-300 font-medium">{selectedProject.role}</span>
             </p>
 
-            {/* Architecture Preview in Modal */}
-            <div className="aspect-video w-full rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 mb-5">
-              <ProjectThumbnail projectId={selectedProject.id} />
+            {/* Tab Switcher for Demo Video vs Architecture Diagram */}
+            {selectedProject.videoUrl && (
+              <div className="flex items-center gap-2 mb-3">
+                <button
+                  type="button"
+                  onClick={() => setModalTab('video')}
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                    modalTab === 'video'
+                      ? 'bg-indigo-600 text-white shadow-sm'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 border border-slate-200 dark:border-slate-700'
+                  }`}
+                >
+                  <PlayCircle className="w-3.5 h-3.5" />
+                  <span>시연 영상</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setModalTab('diagram')}
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                    modalTab === 'diagram'
+                      ? 'bg-indigo-600 text-white shadow-sm'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 border border-slate-200 dark:border-slate-700'
+                  }`}
+                >
+                  <Layers className="w-3.5 h-3.5" />
+                  <span>아키텍처 다이어그램</span>
+                </button>
+              </div>
+            )}
+
+            {/* Video Player / Architecture Preview in Modal */}
+            <div className="aspect-video w-full rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 mb-5 bg-slate-950">
+              {selectedProject.videoUrl && modalTab === 'video' ? (
+                <video
+                  key={selectedProject.videoUrl}
+                  src={selectedProject.videoUrl}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full object-contain bg-black"
+                >
+                  브라우저가 비디오 재생을 지원하지 않습니다.
+                </video>
+              ) : (
+                <ProjectThumbnail projectId={selectedProject.id} />
+              )}
             </div>
 
             {/* Tags */}

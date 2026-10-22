@@ -9,6 +9,7 @@ export interface Project {
   tags: string[];
   githubUrl?: string;
   demoUrl?: string;
+  videoUrl?: string;
   summary: string;
   problem: string;
   solution: string;
@@ -26,6 +27,7 @@ export const projectsData: Project[] = [
     role: 'FastAPI 서버 구축, Google TimesFM 기반 매출 예측 및 시계열 파이프라인 E2E 설계',
     tags: ['FastAPI', 'TimesFM', 'PostgreSQL', 'Next.js', 'Spring Boot', 'Docker'],
     githubUrl: 'https://github.com/human13th2team/nexus',
+    videoUrl: `${import.meta.env.BASE_URL}videos/nexus-demo.mp4`,
     summary: '창업자의 제한적인 데이터 환경에서도 신뢰성 높은 매출 추이를 예측할 수 있도록 사전 학습 파운데이션 모델(TimesFM)을 서빙하고 DB와 백엔드를 연동한 플랫폼입니다.',
     problem: '초기 창업자의 데이터 세트 부족(콜드 스타트)으로 일반 모델 훈련이 불가능했고, 실서비스 연동 시 최소 데이터 해석 구간(Burn-in) 부족으로 무한 로딩이 발생했습니다.',
     solution: '방대한 시계열 데이터로 사전 학습된 TimesFM을 도입하여 제로샷(Zero-shot) 추론 환경을 구축하고, 30일 이상 데이터 수집 여부를 판별하는 조건부 라우팅 아키텍처를 설계했습니다.',
