@@ -276,6 +276,94 @@ export const ProjectThumbnail: React.FC<ProjectThumbnailProps> = ({ projectId })
         </div>
       );
 
+    case 'timesfm-graphrag-decision-system':
+      return (
+        <div className="w-full h-full bg-gradient-to-br from-teal-950/80 via-slate-900 to-indigo-950/80 p-4 flex flex-col justify-between relative overflow-hidden select-none">
+          <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#14b8a6_1px,transparent_1px)] [background-size:16px_16px]" />
+          
+          <div className="relative z-10 flex items-center justify-between">
+            <span className="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-teal-500/20 text-teal-300 border border-teal-500/30">
+              TimesFM 2.5 × Neo4j GraphRAG
+            </span>
+            <span className="flex items-center gap-1 text-[10px] text-emerald-400 font-mono">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              100% On-Device XAI
+            </span>
+          </div>
+
+          {/* Architecture Pipeline */}
+          <div className="relative z-10 my-auto py-1">
+            <div className="flex items-center justify-between gap-1 text-[10px]">
+              <div className="flex-1 p-1.5 rounded bg-blue-950/60 border border-blue-500/40 text-center shadow">
+                <span className="text-blue-300 font-bold block text-[10px]">TimesFM 2.5</span>
+                <span className="text-[9px] text-blue-400/90">10~90% 신뢰구간</span>
+              </div>
+              <span className="text-teal-400 font-bold text-xs">+</span>
+              <div className="flex-1 p-1.5 rounded bg-emerald-950/60 border border-emerald-500/40 text-center shadow">
+                <span className="text-emerald-300 font-bold block text-[10px]">Neo4j Graph</span>
+                <span className="text-[9px] text-emerald-400/90">시계열 엔티티</span>
+              </div>
+              <span className="text-teal-400 font-bold text-xs">&rarr;</span>
+              <div className="flex-1 p-1.5 rounded bg-teal-950/60 border border-teal-500/50 text-center shadow">
+                <span className="text-teal-200 font-bold block text-[10px]">GraphRAG</span>
+                <span className="text-[9px] text-teal-300/90">Ollama Fallback</span>
+              </div>
+              <span className="text-teal-400 font-bold text-xs">&rarr;</span>
+              <div className="p-1.5 rounded bg-purple-950/60 border border-purple-500/40 text-center">
+                <span className="text-purple-300 font-bold block text-[10px]">XAI Report</span>
+                <span className="text-[9px] text-purple-400/90">인과적 진단</span>
+              </div>
+            </div>
+
+            {/* Visual preview: Time Series Forecast Band + Knowledge Graph Nodes */}
+            <div className="mt-2.5 h-10 w-full flex items-center justify-between px-2 bg-slate-950/40 rounded-lg border border-slate-800/60">
+              {/* Left: Forecast Confidence Band */}
+              <div className="flex items-center gap-1.5">
+                <svg className="w-24 h-8" viewBox="0 0 100 32">
+                  <path
+                    d="M 0,22 Q 25,18 45,20 T 70,12 T 100,8 L 100,24 T 70,26 T 45,28 Q 25,24 0,26 Z"
+                    fill="rgba(20, 184, 166, 0.18)"
+                  />
+                  <path
+                    d="M 0,24 Q 25,21 45,24 T 70,19 T 100,16"
+                    fill="none"
+                    stroke="#14b8a6"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M 45,24 L 45,4"
+                    stroke="rgba(255, 255, 255, 0.3)"
+                    strokeDasharray="2 2"
+                  />
+                </svg>
+                <span className="text-[9px] font-mono text-teal-400">TimesFM Forecast</span>
+              </div>
+
+              {/* Right: Knowledge Graph Connected Nodes */}
+              <div className="flex items-center gap-1.5">
+                <svg className="w-20 h-8" viewBox="0 0 80 32">
+                  <line x1="16" y1="16" x2="40" y2="8" stroke="#10b981" strokeWidth="1.5" strokeOpacity="0.6" />
+                  <line x1="16" y1="16" x2="40" y2="24" stroke="#10b981" strokeWidth="1.5" strokeOpacity="0.6" />
+                  <line x1="40" y1="8" x2="68" y2="16" stroke="#8b5cf6" strokeWidth="1.5" strokeOpacity="0.6" />
+                  <line x1="40" y1="24" x2="68" y2="16" stroke="#8b5cf6" strokeWidth="1.5" strokeOpacity="0.6" />
+                  
+                  <circle cx="16" cy="16" r="4" fill="#38bdf8" />
+                  <circle cx="40" cy="8" r="4" fill="#10b981" />
+                  <circle cx="40" cy="24" r="4" fill="#10b981" />
+                  <circle cx="68" cy="16" r="5" fill="#a855f7" />
+                </svg>
+                <span className="text-[9px] font-mono text-purple-300">Neo4j Graph</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative z-10 flex justify-between items-center text-[10px] text-slate-400 border-t border-slate-800/80 pt-1.5 font-mono">
+            <span>Zero-shot (10%~90% CI)</span>
+            <span className="text-teal-300 font-semibold">Causal Reasoning & Streamlit</span>
+          </div>
+        </div>
+      );
+
     case 'java-crud-board':
       return (
         <div className="w-full h-full bg-gradient-to-br from-amber-950/70 via-slate-900 to-slate-950 p-4 flex flex-col justify-between relative overflow-hidden select-none">

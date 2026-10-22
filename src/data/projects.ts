@@ -35,18 +35,18 @@ export const projectsData: Project[] = [
   },
   {
     id: 'stocklab',
-    title: 'StockLab (주식 성향 AI 분석 및 모의투자)',
-    subtitle: '모듈형 아키텍처 기반의 금융 시계열 데이터 수집 및 투자 성향 분석 플랫폼',
+    title: 'StockLab (주식 투자 성향 AI 분석 및 모의투자 플랫폼)',
+    subtitle: 'Flask 모듈형 아키텍처와 Gemini API 기반의 맞춤형 투자 조언 및 자산 분석 시스템',
     category: 'Team',
     period: '2026.03.20 ~ 2026.03.27',
-    teamSize: '6명 (AI / 백엔드 담당)',
-    role: 'Flask 기반 API 서버 구축, 금융 API 연동, DB 스키마 설계 및 대규모 시계열 데이터 처리',
-    tags: ['Flask', 'MariaDB', 'Redis', 'LangChain', 'Python', 'Pydantic'],
+    teamSize: '6명 (AI / 백엔드 엔지니어)',
+    role: 'Gemini API 연동 맞춤형 종목 추천 로직 개발, 자산 수익률 분석 대시보드 구축, 백그라운드 정기 자금 지급 스케줄러 설계',
+    tags: ['Flask', 'Python', 'Gemini API', 'LangChain', 'MariaDB', 'Redis', 'Pydantic'],
     githubUrl: 'https://github.com/human13th2team/StockLab',
-    summary: '실시간 시장 데이터와 주요 투자 지표를 안정적으로 가공하고 사용자 투자 성향 맞춤형 분석 알고리즘을 제공하는 서비스입니다.',
-    problem: '실시간 금융 시계열 데이터가 대량으로 유입될 때 연산 병목 및 조회 지연이 발생할 위험이 있었습니다.',
-    solution: '모듈화된 API 아키텍처를 도입하고, Redis 캐싱 계층과 MariaDB 인덱스 설계를 최적화하여 쿼리 처리 성능을 향상시켰습니다.',
-    result: '복잡한 주식 데이터 연산 중에도 서버 지연을 방지하고 신뢰도 높은 모의투자 환경을 구축했습니다.'
+    summary: '사용자의 거래 이력과 보유 자산 데이터를 분석하여 맞춤형 투자 조언을 생성하고, 기간별 자산 추이 대시보드와 자동 시드머니 지급 배치를 제공하는 모의투자 서비스입니다.',
+    problem: '체결 내역 및 보유 자산의 다각도 집계 연산과 주기적인 자금 지급 배치 작업이 웹 서버 요청 처리와 결합될 경우 발생할 수 있는 지연 및 시스템 불안정성 위험이 있었습니다.',
+   solution: 'Flask 기반의 모듈화된 계층 설계를 도입하여 비즈니스 로직을 분리하고, Redis 캐싱 및 백그라운드 스케줄러를 적용해 거래 데이터 집계와 자금 지급 로직이 주 서비스 응답에 영향을 주지 않도록 구현했습니다.',
+    result: '복잡한 투자 집계 연산과 LLM 연동 환경에서도 지연 없는 안정적인 서비스 응답을 달성하고, 신뢰성 높은 모의투자 및 AI 맞춤 조언 인터페이스를 제공했습니다.'
   },
   {
     id: 'pearl-abyss-rag',
@@ -93,6 +93,21 @@ export const projectsData: Project[] = [
     problem: '시계열 금융 데이터의 비선형성과 노이즈로 인해 학습 시 과적합(Overfitting)이 발생하기 쉬웠습니다.',
     solution: 'Sliding Window 기법으로 시차(Lag) 데이터를 추출하고, Dropout 레이어 및 조기 종료(Early Stopping)를 적용해 모델을 안정화했습니다.',
     result: 'LSTM과 GRU의 잔차 분포 및 MSE 지표를 비교하여 더 안정적인 모델을 선별하고, 인터랙티브 차트가 포함된 대시보드로 서빙했습니다.'
+  },
+  {
+    id: 'timesfm-graphrag-decision-system',
+    title: 'TimesFM × GraphRAG 지능형 매출 예측 및 의사결정 지원 시스템',
+    subtitle: 'Google TimesFM 2.5 시계열 파운데이션 모델과 Neo4j 기반 GraphRAG 인과 추론 파이프라인',
+    category: 'Personal',
+    period: '2026.05.19 ~ 2026.05.20',
+    teamSize: '1명 (개인 프로젝트)',
+    role: 'Zero-shot 시계열 예측 파이프라인 설계, Neo4j 시계열 지식 그래프 모델링, Custom GraphRAG 및 Fallback 질의 엔진 구현, Streamlit 대시보드 구축',
+    tags: ['Python', 'TimesFM', 'Neo4j', 'GraphRAG', 'LangChain', 'Ollama', 'Docker', 'Streamlit'],
+    videoUrl: `${import.meta.env.BASE_URL}videos/timesfm-graphrag-demo.mp4`,
+    summary: '정량적 시계열 예측(TimesFM 2.5)과 정성적 비즈니스 맥락(Neo4j 지식 그래프)을 융합하여 단순 수치 예측을 넘어 "왜 변동하는가"에 대한 인과적 원인과 전략을 자연어로 도출하는 의사결정 시뮬레이터입니다.',
+    problem: '전통적 시계열 모델은 예측 수치는 제공하지만 변동 원인을 설명하지 못하고, 일반 텍스트 기반 RAG는 수치 트렌드와 복잡한 비즈니스 엔티티 간의 유기적 상관관계를 분석하는 데 한계가 있었습니다.',
+    solution: 'TimesFM 2.5로 상·하한 신뢰구간(10%~90%)을 포함한 확률론적 매출 전망치를 생성하고, 제품·리뷰·리스크 이벤트를 시간축 기반 Neo4j 시계열 그래프로 구조화했습니다. 이후 로컬 LLM(Ollama)과 Cypher 기반 Custom GraphRAG 파이프라인을 구축하고 예외 대응용 Fallback 메커니즘을 적용했습니다.',
+    result: '외부 클라우드 비용 없이 100% 온디바이스/오픈소스 스택 기반의 XAI(설명 가능한 인공지능) 의사결정 시스템을 완성했으며, Docker 기반 인프라 격리와 온디맨드 추론 설계를 통해 대시보드 렌더링 성능 및 환경 재현성을 확보했습니다.'
   },
   {
     id: 'java-crud-board',
