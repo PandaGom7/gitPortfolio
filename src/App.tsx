@@ -57,6 +57,10 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  const totalCount = projectsData.length;
+  const teamCount = projectsData.filter((p) => p.category === 'Team').length;
+  const personalCount = projectsData.filter((p) => p.category === 'Personal').length;
+
   const filteredProjects = projectsData.filter((p) => {
     if (filter === 'All') return true;
     return p.category === filter;
@@ -190,8 +194,8 @@ export default function App() {
           {/* Quick Metrics */}
           <div className="grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-slate-200 dark:border-slate-800/80 text-left">
             <div>
-              <div className="text-2xl font-black text-indigo-600 dark:text-indigo-400">6건</div>
-              <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">완성 프로젝트 (팀 2 / 개인 4)</div>
+              <div className="text-2xl font-black text-indigo-600 dark:text-indigo-400">{totalCount}건</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">완성 프로젝트 (팀 {teamCount} / 개인 {personalCount})</div>
             </div>
             <div>
               <div className="text-2xl font-black text-slate-900 dark:text-slate-100">E2E</div>
@@ -287,7 +291,7 @@ export default function App() {
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
                 }`}
               >
-                {cat === 'All' ? '전체 (6)' : cat === 'Team' ? '팀 프로젝트 (2)' : '개인 프로젝트 (4)'}
+                {cat === 'All' ? `전체 (${totalCount})` : cat === 'Team' ? `팀 프로젝트 (${teamCount})` : `개인 프로젝트 (${personalCount})`}
               </button>
             ))}
           </div>
