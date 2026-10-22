@@ -474,9 +474,11 @@ export default function App() {
                 <video
                   key={selectedProject.videoUrl}
                   src={selectedProject.videoUrl}
+                  autoPlay
+                  muted
                   controls
                   playsInline
-                  preload="metadata"
+                  preload="auto"
                   className="w-full h-full object-contain bg-black"
                 >
                   브라우저가 비디오 재생을 지원하지 않습니다.
