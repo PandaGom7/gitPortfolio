@@ -364,47 +364,47 @@ export const ProjectThumbnail: React.FC<ProjectThumbnailProps> = ({ projectId })
         </div>
       );
 
-    case 'java-crud-board':
+    case 'library-lounge':
       return (
         <div className="w-full h-full bg-gradient-to-br from-amber-950/70 via-slate-900 to-slate-950 p-4 flex flex-col justify-between relative overflow-hidden select-none">
           <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:16px_16px]" />
           
           <div className="relative z-10 flex items-center justify-between">
             <span className="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
-              3-Tier Layered Architecture
+              3-Stage Sanction &amp; RBAC
             </span>
             <span className="text-[10px] text-amber-400 font-mono">
-              Java OOP & JDBC
+              Spring Boot &amp; Thymeleaf
             </span>
           </div>
 
           <div className="relative z-10 my-auto py-2">
             <div className="flex items-center justify-between gap-1 text-[10px]">
               <div className="flex-1 p-1.5 rounded bg-slate-800/90 border border-slate-700 text-center">
-                <span className="text-amber-300 font-bold block">Controller</span>
-                <span className="text-[9px] text-slate-400">User Input/CLI</span>
+                <span className="text-amber-300 font-bold block">Member &amp; Auth</span>
+                <span className="text-[9px] text-slate-400">Real-time RBAC</span>
               </div>
               <span className="text-amber-400 font-bold">&rarr;</span>
               <div className="flex-1 p-1.5 rounded bg-amber-900/50 border border-amber-500/50 text-center shadow">
-                <span className="text-amber-200 font-bold block">Service</span>
-                <span className="text-[9px] text-amber-300">Biz Logic & Tx</span>
+                <span className="text-amber-200 font-bold block">3-Stage Suspense</span>
+                <span className="text-[9px] text-amber-300">Overdue &amp; Blind</span>
               </div>
               <span className="text-amber-400 font-bold">&rarr;</span>
               <div className="flex-1 p-1.5 rounded bg-slate-800/90 border border-slate-700 text-center">
-                <span className="text-amber-300 font-bold block">Repository</span>
-                <span className="text-[9px] text-slate-400">PreparedStatement</span>
+                <span className="text-amber-300 font-bold block">FK Safe Delete</span>
+                <span className="text-[9px] text-slate-400">Apache POI .xlsx</span>
               </div>
               <span className="text-amber-400 font-bold">&rarr;</span>
               <div className="p-1.5 rounded bg-emerald-950/60 border border-emerald-500/50 text-center">
                 <span className="text-emerald-300 font-bold block">MySQL</span>
-                <span className="text-[9px] text-emerald-400">Relational DB</span>
+                <span className="text-[9px] text-emerald-400">Audit Backup</span>
               </div>
             </div>
           </div>
 
           <div className="relative z-10 flex justify-between items-center text-[10px] text-slate-400 border-t border-slate-800/80 pt-1.5 font-mono">
-            <span>SQL Injection Prevention</span>
-            <span className="text-amber-300 font-semibold">Clean Architecture</span>
+            <span>Multi-Sheet Excel &amp; Responsive UI</span>
+            <span className="text-amber-300 font-semibold">63 Commits (42 PRs)</span>
           </div>
         </div>
       );
