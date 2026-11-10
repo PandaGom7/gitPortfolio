@@ -110,17 +110,18 @@ export const projectsData: Project[] = [
     result: '외부 클라우드 비용 없이 100% 온디바이스/오픈소스 스택 기반의 XAI(설명 가능한 인공지능) 의사결정 시스템을 완성했으며, Docker 기반 인프라 격리와 온디맨드 추론 설계를 통해 대시보드 렌더링 성능 및 환경 재현성을 확보했습니다.'
   },
   {
-    id: 'java-crud-board',
-    title: 'Java CLI 게시판 및 MySQL 연동 애플리케이션',
-    subtitle: '계층형 아키텍처(Layered Architecture)와 JDBC를 활용한 CRUD 시스템',
-    category: 'Personal',
-    period: '2026.08 ~ 2026.09',
-    teamSize: '1명 (개인 프로젝트)',
-    role: 'DB 스키마 모델링, Java OOP 기반 계층 분리, JDBC 데이터 액세스 로직 개발',
-    tags: ['Java', 'MySQL', 'JDBC', 'DBeaver', 'OOP'],
-    summary: '순수 Java 객체지향 설계 원칙을 적용하여 게시글 및 댓글의 전체 라이프사이클을 관리하는 콘솔 기반 백엔드 애플리케이션입니다.',
-    problem: '비즈니스 로직과 데이터베이스 접근 로직이 혼재될 경우 유지보수성과 트랜잭션 관리가 저하되는 구조적 문제가 있었습니다.',
-    solution: 'Controller - Service - Repository 계층형 아키텍처를 도입하고, PreparedStatement를 활용해 SQL Injection을 방지하며 커넥션 자원 누수를 철저히 차단했습니다.',
-    result: '안정적인 데이터 정합성을 보장하는 모듈형 CRUD 기반을 완성하고, 관계형 데이터베이스 모델링 역량을 입증했습니다.'
+    id: 'library-lounge',
+    title: 'Library Lounge (도서관 통합 관리 및 커뮤니티 웹 서비스)',
+    subtitle: 'Spring Boot 기반 3단계 통합 제재 엔진 및 다중 시트 엑셀 리포팅 웹 플랫폼',
+    category: 'Team',
+    period: '2026.10.13 ~ 2026.11.06',
+    teamSize: '4명 (백엔드 / 프론트엔드 / Git 병합 총괄)',
+    role: '회원·3단계 통합 제재(MemberSuspense) 전 계층 구현, 실시간 권한 판별 및 FK 안전 강제 삭제, Apache POI 다중 시트 엑셀 다운로드 2종 개발, 전역 디자인 시스템·반응형 UI 구축 및 PR 병합(42건)',
+    tags: ['Java', 'Spring Boot', 'Thymeleaf', 'MySQL', 'Apache POI', 'Summernote', 'CSS3', 'Git'],
+    githubUrl: 'https://github.com/human0622java3team/librarylounge',
+    summary: '도서 대출·반납과 커뮤니티를 아우르는 통합 도서관 웹 서비스로, 회원 및 3단계 누적 차등 제재 도메인 전 계층과 실시간 권한 판별, 관리자 다중 시트 엑셀 리포트(.xlsx), 반응형 웹 UI를 설계·구현한 프로젝트입니다.',
+    problem: '연체·파손·커뮤니티 위반 등 복합 사유에 따른 실시간 권한(대출·글쓰기·댓글) 제어와 탈퇴 회원 이력 보존이 필요했으며, 제재가 연결된 게시글 강제 삭제 시 외래키(FK) 제약조건 위반 오류 및 모바일 뷰·Summernote 에디터 호환성 문제가 발생했습니다.',
+    solution: '계정 상태와 활성 제재 이력을 조합한 실시간 권한 검증 쿼리와 3단계 누적 차등 제재·탈퇴 마스킹 백업(member_deleted)을 구현했습니다. 또한 FK 참조를 선행 분리(null)하는 관리자 안전 삭제와 Apache POI(XSSFWorkbook) 다중 시트 엑셀 리포트 2종을 개발하고, 모바일 카드형 뷰 전환 및 에디터 유튜브 정규식 패치·빈 게시글 이중 검증을 적용했습니다.',
+    result: '외래키 충돌 없는 데이터 정합성과 실시간 도메인 권한 통제를 확보하고, 관리자 리포팅 자동화 및 브레이크포인트별 반응형 UI/UX 완성을 통해 총 63개 커밋(기능·수정 21건, PR 병합·충돌 해결 42건)으로 팀 프로덕션 완성도를 견인했습니다.'
   }
 ];
